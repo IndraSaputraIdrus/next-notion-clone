@@ -6,8 +6,8 @@ export default function MarketingNavbar() {
     <header className="p-4 flex items-center justify-between" >
       <MarketingLogo />
       <div className="space-x-2">
-        <Button variant="outline">Login</Button>
-        <Button variant="outline">Register</Button>
+        <Button size="sm" variant="outline">Login</Button>
+        <Button size="sm" variant="outline">Register</Button>
       </div>
     </header>
   )

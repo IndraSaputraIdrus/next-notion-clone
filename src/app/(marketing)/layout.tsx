@@ -10,7 +10,7 @@ export default function MarketingLayout({ children }: PageProps) {
   return (
     <div className="flex flex-col h-full">
       <MarketingNavbar />
-      <main>{children}</main>
+      <main className="flex-1">{children}</main>
       <MarketingFooter />
     </div>
   )

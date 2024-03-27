@@ -4,12 +4,24 @@ import MainSidebar from "@/components/main-sidebar"
 import Spinner from "@/components/spinner"
 import { useConvexAuth } from "convex/react"
 import { redirect } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function MainLayout({
   children
 }: {
   children: React.ReactNode
 }) {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [])
 
   // const { isLoading, isAuthenticated } = useConvexAuth()
 

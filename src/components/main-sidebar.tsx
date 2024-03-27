@@ -72,6 +72,12 @@ export default function MainSidebar() {
     }
   }, [pathname, isMobile, setIsCollapsed])
 
+  useEffect(() => {
+    if (!isMobile && isCollapsed) {
+      setIsCollapsed()
+    }
+  }, [isMobile, setIsCollapsed, isCollapsed])
+
   return (
     <aside ref={sidebarRef} className={cn(
       "w-full sm:w-60",

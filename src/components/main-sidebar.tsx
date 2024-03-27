@@ -10,7 +10,7 @@ import ToggleNav from "./main-sidebar-toggle"
 
 export default function MainSidebar() {
 
-  const store = useNavStore()
+  const { isCollapsed, setIsCollapsed } = useNavStore()
   const sidebarRef = useRef<HTMLElement>(null)
   const isMobile = useMediaQuery("(max-width: 640px)")
   const pathname = usePathname()
@@ -59,18 +59,18 @@ export default function MainSidebar() {
 
   useEffect(() => {
     if (isMobile && sidebarRef.current) {
-      store.setIsCollapsed()
+      setIsCollapsed()
       sidebarRef.current.style.width = "100%"
     } else {
       resetWidth()
     }
-  }, [isMobile, sidebarRef.current])
+  }, [isMobile, sidebarRef, setIsCollapsed])
 
   useEffect(() => {
     if (isMobile && pathname) {
-      store.setIsCollapsed()
+      setIsCollapsed()
     }
-  }, [pathname, isMobile])
+  }, [pathname, isMobile, setIsCollapsed])
 
   return (
     <aside ref={sidebarRef} className={cn(
@@ -79,7 +79,7 @@ export default function MainSidebar() {
       "absolute inset-0 sm:relative",
       "flex justify-between",
       "transition-all ease-in-out duration-300",
-      store.isCollapsed && "-left-full"
+      isCollapsed && "-left-full"
     )}>
       <div>
         <p>Actions</p>

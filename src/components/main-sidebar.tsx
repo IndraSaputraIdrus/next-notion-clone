@@ -7,6 +7,7 @@ import { useMediaQuery } from "usehooks-ts"
 import { usePathname } from "next/navigation"
 import { useNavStore } from "@/lib/stores/nav-store"
 import ToggleNav from "./main-sidebar-toggle"
+import UserItem from "./main-sidebar-user"
 
 export default function MainSidebar() {
 
@@ -82,15 +83,18 @@ export default function MainSidebar() {
     <aside ref={sidebarRef} className={cn(
       "w-full sm:w-60",
       "bg-secondary",
-      "absolute inset-0 sm:relative",
+      "group/sidebar",
+      "absolute inset-0 sm:relative z-[9999]",
       "flex justify-between",
       "transition-all ease-in-out duration-300",
       isCollapsed && "-left-full"
     )}>
-      <div>
-        <p>Actions</p>
+      <div className="w-full flex flex-col items-start">
+        <UserItem />
+        <div>Item</div>
       </div>
-      <button onClick={resetWidth} className="absolute top-3 right-3 hover:bg-neutral-300 rounded">
+      <button onClick={resetWidth}
+        className="transition opacity-0 group-hover/sidebar:opacity-100 absolute top-4 right-3 hover:bg-neutral-300 rounded">
         <ChevronsLeftIcon className="size-6 text-muted-foreground" />
       </button>
       <ToggleNav className="sm:hidden absolute top-3 right-3 hover:bg-neutral-300 rounded">
@@ -100,7 +104,8 @@ export default function MainSidebar() {
         onMouseDown={handleMouseDown}
         className={cn(
           "hidden sm:block",
-          "hover:bg-primary/20",
+          "transition opacity-0 group-hover/sidebar:opacity-100",
+          "bg-primary/20",
           "w-1 h-full",
           "absolute right-0 top-0",
           "cursor-ew-resize"

@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation"
 import { useNavStore } from "@/lib/stores/nav-store"
 import ToggleNav from "./main-sidebar-toggle"
 import UserItem from "./main-sidebar-user"
+import MainSidebarItem from "./main-sidebar-items"
 
 export default function MainSidebar() {
 
@@ -91,10 +92,10 @@ export default function MainSidebar() {
     )}>
       <div className="w-full flex flex-col items-start">
         <UserItem />
-        <div>Item</div>
+        <MainSidebarItem />
       </div>
       <button onClick={resetWidth}
-        className="transition opacity-0 group-hover/sidebar:opacity-100 absolute top-4 right-3 hover:bg-neutral-300 rounded">
+        className="hidden sm:block transition opacity-0 group-hover/sidebar:opacity-100 absolute top-4 right-3 hover:bg-neutral-300 rounded">
         <ChevronsLeftIcon className="size-6 text-muted-foreground" />
       </button>
       <ToggleNav className="sm:hidden absolute top-3 right-3 hover:bg-neutral-300 rounded">
